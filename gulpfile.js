@@ -19,11 +19,12 @@ var CONFIG = {
 
 // Compiles Sass files into CSS
 gulp.task('sass', function () {
-    return gulp.src(['src/scss/assets/foundation-float.scss'])
+    return gulp.src(['src/scss/site.scss'])
         .pipe(sourcemaps.init())
         .pipe(plumber())
         .pipe(sass({
-            outputStyle: "compressed"
+            outputStyle: "compressed",
+            includePaths: ['node_modules/materialize-css/sass']
         }).on('error', sass.logError))
         .pipe(postcss([autoprefixer({
             browsers: CONFIG.CSS_COMPATIBILITY

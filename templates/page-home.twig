@@ -1,11 +1,76 @@
 {% extends "base.twig" %}
 {% block content %}
 
-<div class="row expanded collapse banner-container" id="home-banner-container">
-	<h1 id="page-title">Page Title Here</h1>
-	{% include 'nav.twig' with {'menu': menu.get_items} %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-12 banner-container" style="background: url('{{ TimberImage(post.get_field("banner_image")).src }}') no-repeat center center;"> 
+			<h1 id="site-title">{{site.title}}</h1>
+			<h3 id="site-tagline">{{site.description}}</h3>
+			<div class="col-sm-6">
+				<a href="#portfolio" class="btn btn-primary">My Work</a>
+				<a href="{{site.link}}/contact" class="btn btn-primary">Contact Me</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="row" id="bio-section">
+		<div class="col-sm-12 col-md-4">
+			<img src="http://via.placeholder.com/50x50" alt="A very stunning web developer" class="bio-image" />
+			<p class="caption">Vandy grad, beer snob, tinkerer</p>
+		</div>
+		<div class="col-sm-12 col-md-8" id="bio">
+			<h3>Hi, my name is Michael</h3>
+			<p class="bio-text">I type lots of pretty words here to trick you into buying a new website. Please, please, please buy, I need the money.</p>
+		</div>
+
+		<div class="col-sm-12 col-md-6" id="services-container">
+			<h3>Services</h3>
+			<dl>
+				<dt>Service 1</dt>
+				<dd>Yep, I can do this service, no problem.</dd>
+				<dt>Service 2</dt>
+				<dd>Yep, I can do this service, no problem.</dd>
+				<dt>Service 3</dt>
+				<dd>Yep, I can do this service, no problem.</dd>
+			</dl>
+		</div>
+		<div class="col-sm-12 col-md-6" id="skills-container">
+			<h3>Skills</h3>
+			<dl>
+					<dt>Skill 1</dt>
+					<dd>Yep, I have this skill, no problem.</dd>
+					<dt>Skill 2</dt>
+					<dd>Yep, I have this skill, no problem.</dd>
+					<dt>Skill 3</dt>
+					<dd>Yep, I have this skill, no problem.</dd>
+				</dl>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-12"><h2>Portfolio</h2></div>
+		<div class="col-sm-12 col-md-6">
+			<img src="http://via.placeholder.com/350x350" alt="Site description" />
+		</div>
+		<div class="col-sm-12 col-md-6">
+			<img src="http://via.placeholder.com/350x350" alt="Site description" />
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-12"><h2>Testimonials</h2></div>
+		<div class="col-sm-12 col-md-8">
+			<p class="testomial-text">This is a really nice quote from one of my friends who says I do good work.</p>
+		</div>
+		<div class="col-sm-12 col-md-4">
+			<div class="testimonial-source">
+				<p id="testimoial-person">Austin Bauman</p>
+				<p id="testimoial-role">Owner</p>
+				<p id="testimoial-company">Greenfleet Bicycle Shop</p>
+			</div>
+		</div>
+	</div>
+
 </div>
-
-
 
 {% endblock %}

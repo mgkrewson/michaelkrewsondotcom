@@ -18,13 +18,8 @@
 /** CHANGE THIS TO TOGGLE COMING SOON PAGE */
 $show_coming_soon = false;
 
-
-$custom_logo_id = get_theme_mod( 'custom_logo' );
-$logo_src = wp_get_attachment_image_src( $custom_logo_id , 'full' );
-
 $context = Timber::get_context();
 $context['posts'] = new Timber\PostQuery();
-$context['site_logo'] = $logo_src[0];
 $context['is_coming_soon'] = $show_coming_soon;
 
 $templates = array( 'index.twig' );

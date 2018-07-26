@@ -1,2 +1,9 @@
-@import 'materialize';
+@import 'bootstrap';
 @import './variables';
+
+.banner-container {
+  height: 70vh;
+  background: gray;
+  background-size: cover !important; 
+}
+

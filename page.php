@@ -21,17 +21,11 @@
  * @since    Timber 0.1
  */
 
-$custom_logo_id = get_theme_mod( 'custom_logo' );
-$logo_src = wp_get_attachment_image_src( $custom_logo_id , 'full' );
 
 $context = Timber::get_context();
 $post = new TimberPost();
 $context['post'] = $post;
-$context['site_logo'] = $logo_src[0];
 
-if (is_post_type_archive()) {
-    $context['is_shop'] = true;
-}
 
 Timber::render( array( 'page-' . $post->post_name . '.twig', 'page.twig' ), $context );
 

@@ -44,6 +44,14 @@ add_action( 'widgets_init', 'wpdocs_theme_slug_widgets_init' );
 add_filter( 'wpseo_metabox_prio', function() { return 'low';});
 
 
+/** ACF - add options page */
+if( function_exists('acf_add_options_page') ) {
+	
+	acf_add_options_page();
+	
+}
+
+
 /** Woocommerce functions */
 /* add_filter( 'woocommerce_show_page_title', '__return_false' );
 
@@ -63,13 +71,13 @@ add_action( 'woocommerce_single_product_summary', 'woocommerce_template_product_
 
 
 
-function timber_set_product( $post ) {
-    global $product;
+// function timber_set_product( $post ) {
+//     global $product;
     
-    if ( is_woocommerce() ) {
-        $product = wc_get_product( $post->ID );
-    }
-}
+//     if ( is_woocommerce() ) {
+//         $product = wc_get_product( $post->ID );
+//     }
+// }
 
 if ( ! class_exists( 'Timber' ) ) {
 	add_action( 'admin_notices', function() {
@@ -125,8 +133,6 @@ class StarterSite extends TimberSite {
 		$context['footer_widgets'][2] = Timber::get_widgets('footer_widgets3');
 		$custom_logo_id = get_theme_mod( 'custom_logo' );
 		$context['logo_src'] = wp_get_attachment_image_src( $custom_logo_id , 'full' )[0];
-		$context['foo'] = 'foo';
-		$context['qux'] = 'qux';
 		return $context;
 	}
 

@@ -1,11 +1,21 @@
-<div id="nav-sticky-container">
-    <div class="row expanded" id="menu-bar">
+<nav class="navbar navbar-expand-md fixed-top navbar-light">
+  {# <a class="navbar-brand" href="#" id="navbar-brand">MK</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button> #}
 
-        <div id="site-logo-container">
-            <a id="site-link" href="{{site.link}}">
-                <img id="header-logo" class="logo" src="{{logo_src}}" />
-            </a>
-        </div>
-        
-    </div>
-</div>
+  {# <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto" id="navbar-nav">
+      {% if menu %}
+        {% for item in menu %}
+          <li class="nav-item {{item.classes | join(' ')}}">
+            <a class="nav-link" href="{{item.link}}">{{item.title}}</a>
+          </li>
+        {% endfor %}
+      {% endif %}
+      
+
+      
+    </ul>
+  </div> #}
+</nav>

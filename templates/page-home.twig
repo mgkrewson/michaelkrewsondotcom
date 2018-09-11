@@ -1,11 +1,115 @@
 {% extends "base.twig" %}
 {% block content %}
 
-<div class="row expanded collapse banner-container" id="home-banner-container">
-	<h1 id="page-title">Page Title Here</h1>
-	{% include 'nav.twig' with {'menu': menu.get_items} %}
+
+<div class="container-fluid">
+
+	<section id="banner" role="banner">
+		<div class="row">
+			<div class="col-sm-12 banner-container d-flex flex-column justify-content-center" style="background: url('{{ TimberImage(post.get_field("banner_image")).src }}') no-repeat center center;"> 
+				<h1 id="site-title">{{site.title}}</h1>
+				<h3 id="site-tagline">{{site.description}}</h3>
+				<div class="row justify-content-end" id="header-button-container">
+					{# <div class="col-sm ml-auto d-flex flex-row justify-content-end" id="header-button-container"> #}
+						{# <a href="#portfolio" class="btn btn-warning">See my work</a> #}
+						<a href="mailto:{{options.email_address}}" class="btn btn-warning">Let's build something</a>
+					{# </div> #}
+				</div>
+				
+			</div>
+		</div>
+	</section>
+
+	<section id="bio" role="bio">
+		<div class="row align-items-center">
+
+			<div class="col-sm-12 col-md-6 ml-auto text-center">
+				{% set profile_pic = TimberImage(options.profile_pic) %}
+				<img src="{{profile_pic.src}}" alt="{{profile_pic.alt}}" class="bio-image" />
+				<p class="caption">
+					{% if options.bio_keywords %}
+						{% for keyword in options.bio_keywords %}
+							{% if loop.last %}
+								{{keyword.keyword}}
+							{% else %}
+								{{keyword.keyword}} | 
+							{% endif %}
+						{% endfor %}
+					{% endif %}
+				</p>
+			</div>
+
+			<div class="col-sm-12 col-md-6 ml-auto" id="bio-text">
+				<p><span class="first-sentence">{{options.bio.first_sentence}}</span> {{options.bio.rest_of_bio}}</p>
+				<div class="text-center"><a href="mailto:{{options.email_address}}" class="btn btn-warning">Get Started</a></div>
+			</div>
+	
+			{# <div class="col-sm-12 col-md-6" id="services-container">
+				<h3>Services</h3>
+				<dl>
+					<dt>Service 1</dt>
+					<dd>Yep, I can do this service, no problem.</dd>
+					<dt>Service 2</dt>
+					<dd>Yep, I can do this service, no problem.</dd>
+					<dt>Service 3</dt>
+					<dd>Yep, I can do this service, no problem.</dd>
+				</dl>
+			</div>
+			<div class="col-sm-12 col-md-6" id="skills-container">
+				<h3>Skills</h3>
+				<dl>
+						<dt>Skill 1</dt>
+						<dd>Yep, I have this skill, no problem.</dd>
+						<dt>Skill 2</dt>
+						<dd>Yep, I have this skill, no problem.</dd>
+						<dt>Skill 3</dt>
+						<dd>Yep, I have this skill, no problem.</dd>
+					</dl>
+			</div> #}
+		</div>
+	</section>
+
+	{# <section id="portfolio" role="portfolio">
+		<div class="row">
+			<div class="col-sm-12"><h2 class="section-title">Portfolio</h2></div>
+			<div class="row flex-wrap justify-content-around align-items-center" id="portfolio-container" style={background: url("{{TimberImage(website.snapshot).src}}")}>
+				{% for website in options.full_websites %}
+					
+						<div class="portfolio-item">
+								<a href="{{website.url}}" target="_blank">
+								<div class="portfolio-image"></div>
+								<div class="portfolio-info">
+									<h4>{{website.website_name}}</h4>
+									<p>{{website.description}}</p>
+								</div>
+							</a>
+						</div>
+					
+					
+						
+					
+				{% endfor %}
+			</div>
+			
+
+		</div>
+	</section> #}
+
+	
+	{# <div class="row">
+		<div class="col-sm-12"><h2>Testimonials</h2></div>
+		<div class="col-sm-12 col-md-8">
+			<p class="testomial-text">This is a really nice quote from one of my friends who says I do good work.</p>
+		</div>
+		<div class="col-sm-12 col-md-4">
+			<div class="testimonial-source">
+				<p id="testimoial-person">Austin Bauman</p>
+				<p id="testimoial-role">Owner</p>
+				<p id="testimoial-company">Greenfleet Bicycle Shop</p>
+			</div>
+		</div>
+	</div> #}
+
 </div>
-
-
 
 {% endblock %}

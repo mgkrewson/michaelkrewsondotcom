@@ -1,2 +1,175 @@
-@import 'materialize';
 @import './variables';
+
+@function rem($sizeInPx) {
+  $remCalc: $sizeInPx / $font-size-root;
+  @return $remCalc * 1rem;
+}
+
+// Define 16px explicitly as 1rem, so it's not left to browser default
+$font-size-base: rem($font-size-root);
+
+@import 'bootstrap';
+
+header {
+  .navbar-light {
+    // background: linear-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+    #navbar-brand {
+      color: theme-color("secondary");
+      font-size: 1.5rem;
+      padding: 0.5rem;
+      border: 2px solid theme-color("secondary");
+    }
+    #navbar-nav {
+      .nav-item {
+        .nav-link {
+          color: black;
+        }
+      }
+    }
+  }
+}
+
+section:last-of-type {
+  margin-bottom: 0;
+}
+
+section {
+  margin-bottom: 2rem;
+
+  .section-title {
+    font-family: $title-font;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    font-size: 2.5rem;
+    margin: 2rem auto;
+  }
+
+  &#banner {
+    .banner-container {
+      position: relative;
+      height: rem(600px);
+      background: gray;
+      background-size: cover !important;
+      background-attachment: fixed !important;
+      #site-title {
+        display: block;
+        text-transform: uppercase;
+        font-family: $title-font;
+        font-size: 8rem;
+        font-weight: bold;
+        line-height: .70;
+        letter-spacing: -.5rem;
+        min-width: rem(650px);
+        min-height: rem(220px);
+        width: 0;
+        background-image: url(https://media.giphy.com/media/26BROrSHlmyzzHf3i/giphy.gif);
+        background-size: cover;
+        color: transparent;
+        background-clip: text;
+        overflow: visible;
+      }
+      #site-tagline {
+        font-family: 'Didact Gothic';
+        font-size: 2.5rem;
+        height: 6rem;
+      }
+      #header-button-container {
+        position: absolute;
+        bottom: 5.5rem;
+        // right: 0;
+        width: 100%;
+        padding-right: 2rem;
+        a {
+          margin-right: 2rem;
+          padding: 0.4rem 1.5rem;
+          font-size: 1.7rem;
+          color: theme-color('warning');
+          background: transparent;
+          border-width: 3px;
+          border-radius: rem(33px);
+          &:hover {
+            background: theme-color('warning');
+            color: white;
+            border-color: theme-color('warning');
+          }
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+
+  &#bio {
+    padding: 6.5rem 0;
+    .bio-image {
+      $side-dimension: rem(200px);
+      width: $side-dimension;
+      height: $side-dimension;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+    }
+    .caption {
+      color: gray("700");
+      font-size: 1.4rem;
+    }
+
+    #bio-text {
+      border-left: 1px solid gray("500");
+      font-size: 1.2rem;
+      .first-sentence {
+        font-weight: bold;
+        font-size: 1.3rem;
+      }
+      a {
+        padding: 0.3rem 1rem;
+        font-size: 1.2rem;
+        color: theme-color('warning');
+        background: transparent;
+        border-width: 3px;
+        border-radius: rem(33px);
+        &:hover {
+          background: theme-color('warning');
+          color: white;
+          border-color: theme-color('warning');
+        }
+      }
+    }
+  }
+
+  &#portfolio {
+    background: gray("200");
+    margin-left: -$grid-gutter-width / 2;
+    margin-right: -$grid-gutter-width / 2;
+    padding: 0 4rem 4rem;
+    #portfolio-container {
+      padding: 2rem 0;
+      .portfolio-item {
+        display: inherit;
+        height: 240px;
+        width: 370px;
+      }
+      .portfolio-image {  // 370x240
+        width: 40%;
+        height: auto;
+        border-radius: 5px;
+      }
+    }
+  }
+}
+
+
+footer {
+  background: rgb(60, 192, 224);
+  #footer-top-row {
+    padding: 1rem 0;
+    color: white;
+    font-size: 1.2rem;
+  }
+  #footer-email {
+    a {
+      color: white;
+    }
+  }
+}

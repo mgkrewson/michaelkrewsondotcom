@@ -24,7 +24,7 @@ gulp.task('sass', function () {
         .pipe(plumber())
         .pipe(sass({
             outputStyle: "compressed",
-            includePaths: ['node_modules/materialize-css/sass']
+            includePaths: ['node_modules/bootstrap/scss']
         }).on('error', sass.logError))
         .pipe(postcss([autoprefixer({
             browsers: CONFIG.CSS_COMPATIBILITY

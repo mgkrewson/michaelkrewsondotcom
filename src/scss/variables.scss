@@ -1,1 +1,17 @@
-$my-variable: 500px;
+$font-size-root: 16px;
+
+$theme-colors: (
+  "primary": #00AD82,
+  "secondary": #0F6CE3,
+  "warning": #ffaa20,
+
+);
+
+//1DE9B6 - old primary color
+
+@import url('https://fonts.googleapis.com/css?family=Arimo:400,700|Montserrat:400,700|Didact+Gothic');
+$font-family-sans-serif: 'Montserrat', "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$title-font: 'Arimo', sans-serif;
+
+$navbar-padding-x: 2rem;
+$grid-gutter-width: 4rem;

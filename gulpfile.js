@@ -49,4 +49,15 @@ gulp.task('bs', function() {
     gulp.watch(["public/js/*", "templates/*", "templates/*/*", "*.php"]).on('change', browser.reload);
 });
 
+gulp.task('build', ['sass'], function() {
+    gulp.src(['*.php', '*.css', 'humans.txt'])
+        .pipe(gulp.dest('build/'));
+    gulp.src(['templates/*', 'templates/*/*'])
+        .pipe(gulp.dest('build/templates/'));
+    gulp.src(['public/*', 'public/*/*'])
+        .pipe(gulp.dest('build/public/'));
+    gulp.src(['static/*'])
+        .pipe(gulp.dest('build/static/'));
+});
+
 gulp.task('default', ['watch']);

@@ -163,3 +163,6 @@ function mytheme_timber_context( $context ) {
     $context['options'] = get_fields('option');
     return $context;
 }
+
+remove_filter( 'the_content', 'wpautop' );
+remove_filter( 'the_excerpt', 'wpautop' );

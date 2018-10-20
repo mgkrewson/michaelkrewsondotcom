@@ -91,7 +91,7 @@ if ( ! class_exists( 'Timber' ) ) {
 	return;
 }
 
-Timber::$dirname = array('templates', 'views');
+Timber::$dirname = array('templates', 'views', 'react');
 
 class StarterSite extends TimberSite {
 
@@ -164,5 +164,5 @@ function mytheme_timber_context( $context ) {
     return $context;
 }
 
-remove_filter( 'the_content', 'wpautop' );
-remove_filter( 'the_excerpt', 'wpautop' );
+// remove_filter( 'the_content', 'wpautop' );
+// remove_filter( 'the_excerpt', 'wpautop' );

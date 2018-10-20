@@ -43,73 +43,73 @@
 				<p><span class="first-sentence">{{options.bio.first_sentence}}</span> {{options.bio.rest_of_bio}}</p>
 				<div class="text-center"><a href="mailto:{{options.email_address}}" class="btn btn-warning">Get Started</a></div>
 			</div>
-	
-			{# <div class="col-sm-12 col-md-6" id="services-container">
-				<h3>Services</h3>
-				<dl>
-					<dt>Service 1</dt>
-					<dd>Yep, I can do this service, no problem.</dd>
-					<dt>Service 2</dt>
-					<dd>Yep, I can do this service, no problem.</dd>
-					<dt>Service 3</dt>
-					<dd>Yep, I can do this service, no problem.</dd>
-				</dl>
-			</div>
-			<div class="col-sm-12 col-md-6" id="skills-container">
-				<h3>Skills</h3>
-				<dl>
-						<dt>Skill 1</dt>
-						<dd>Yep, I have this skill, no problem.</dd>
-						<dt>Skill 2</dt>
-						<dd>Yep, I have this skill, no problem.</dd>
-						<dt>Skill 3</dt>
-						<dd>Yep, I have this skill, no problem.</dd>
-					</dl>
-			</div> #}
+
 		</div>
 	</section>
 
-	{# <section id="portfolio" role="portfolio">
-		<div class="row">
+	<section id="portfolio" role="portfolio">
+		<div class="row justify-content-around">
 			<div class="col-sm-12"><h2 class="section-title">Portfolio</h2></div>
-			<div class="row flex-wrap justify-content-around align-items-center" id="portfolio-container" style={background: url("{{TimberImage(website.snapshot).src}}")}>
+
 				{% for website in options.full_websites %}
-					
-						<div class="portfolio-item">
-								<a href="{{website.url}}" target="_blank">
-								<div class="portfolio-image"></div>
-								<div class="portfolio-info">
-									<h4>{{website.website_name}}</h4>
-									<p>{{website.description}}</p>
+					<div class="col col-sm-12 col-md-5">
+						<div class="portfolio-open" data-title="{{website.website_name}}" data-image="{{TimberImage(website.snapshot).src}}" data-url="{{website.url}}" data-description="{{website.description}}">
+							<div class="portfolio-item" style="background: url('{{TimberImage(website.snapshot).src}}') no-repeat">
+								<div class="portfolio-info d-flex justify-content-center align-items-center">
+									<h2 class="portfolio-site-title">{{website.website_name}}</h2>
 								</div>
-							</a>
+							</div>
 						</div>
+					</div>
 					
-					
-						
 					
 				{% endfor %}
-			</div>
 			
 
 		</div>
-	</section> #}
+	</section>
 
-	
-	{# <div class="row">
-		<div class="col-sm-12"><h2>Testimonials</h2></div>
-		<div class="col-sm-12 col-md-8">
-			<p class="testomial-text">This is a really nice quote from one of my friends who says I do good work.</p>
-		</div>
-		<div class="col-sm-12 col-md-4">
-			<div class="testimonial-source">
-				<p id="testimoial-person">Austin Bauman</p>
-				<p id="testimoial-role">Owner</p>
-				<p id="testimoial-company">Greenfleet Bicycle Shop</p>
+	<section id="testimonial" role="testimonials">
+		<div class="row justify-content-around">
+			{# <div class="col-sm-12"><h2 class="section-title">Testimonials</h2></div> #}
+
+			<div class="col-sm-12 col-md-7">
+				<i class="fas fa-quote-left fa-4x testimonial-quote-icon"></i>
+				<p class="testomial-text">This is a really nice quote from one of my friends who says I do good work.</p>
+			</div>
+			<div class="col-sm-12 col-md-4">
+				<div class="testimonial-source">
+					<p id="testimoial-person">Austin Bauman</p>
+					<p id="testimoial-role">Owner</p>
+					<p id="testimoial-company">Greenfleet Bicycle Shop</p>
+				</div>
 			</div>
 		</div>
-	</div> #}
+	</section>
+	
+</div>
 
+<div class="modal fade" id="portfolio-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="container-fluid">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<a class="modal-site-url" href="" target="_blank">
+						<img class="modal-site-image" src="" />
+					</a>
+					<a class="modal-site-url" href="" target="_blank">
+						<h4 id="modalLabel" class="modal-site-title"></h4>
+					</a>
+						
+					<p class="modal-site-description"></p>
+					
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 {% endblock %}

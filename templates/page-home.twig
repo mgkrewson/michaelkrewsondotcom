@@ -2,28 +2,27 @@
 {% block content %}
 
 
-<div class="container-fluid">
+<section id="banner" role="banner">
 
-	<section id="banner" role="banner">
-		<div class="row">
-			<div class="col-sm-12 banner-container d-flex flex-column justify-content-center" style="background: url('{{ TimberImage(post.get_field("banner_image")).src }}') no-repeat center center;"> 
-				<h1 id="site-title">{{site.title}}</h1>
-				<h3 id="site-tagline">{{site.description}}</h3>
-				<div class="row justify-content-end" id="header-button-container">
-					{# <div class="col-sm ml-auto d-flex flex-row justify-content-end" id="header-button-container"> #}
-						{# <a href="#portfolio" class="btn btn-warning">See my work</a> #}
-						<a href="mailto:{{options.email_address}}" class="btn btn-warning">Let's build something</a>
-					{# </div> #}
-				</div>
-				
+		<div class="banner-container d-flex flex-column"
+			style="background: linear-gradient(rgba(255,255,255, 0.3), rgb(255,255,255, 0.3)), url('{{ TimberImage(post.get_field("banner_image")).src }}') no-repeat center center;"> 
+
+			<h1 id="site-title">Michael<br>Krewson</h1>
+			<div id="site-title-spacer"></div>
+			<h3 id="site-tagline">{{site.description}}</h3>
+			<div class="d-flex" id="header-button-container">
+				<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#contact-modal">Let's build something</button>
 			</div>
+			
 		</div>
-	</section>
 
+</section> <!-- close #banner -->
+
+<div class="container-fluid">
 	<section id="bio" role="bio">
-		<div class="row align-items-center">
+		<div class="row align-items-center justify-content-center">
 
-			<div class="col-sm-12 col-md-6 ml-auto text-center">
+			<div class="col-sm-12 col-md-6 text-center">
 				{% set profile_pic = TimberImage(options.profile_pic) %}
 				<img src="{{profile_pic.src}}" alt="{{profile_pic.alt}}" class="bio-image" />
 				<p class="caption">
@@ -39,61 +38,59 @@
 				</p>
 			</div>
 
-			<div class="col-sm-12 col-md-6 ml-auto" id="bio-text">
+			<div class="col-11 col-sm-10 col-md-6" id="bio-text">
 				<p><span class="first-sentence">{{options.bio.first_sentence}}</span> {{options.bio.rest_of_bio}}</p>
-				<div class="text-center"><a href="mailto:{{options.email_address}}" class="btn btn-warning">Get Started</a></div>
+				<div class="text-center"><button type="button" class="btn btn-secondary mt-3" data-toggle="modal" data-target="#contact-modal">Get Started</button></div>
 			</div>
 
 		</div>
-	</section>
+	</section> <!-- close #bio -->
 
-	<section id="portfolio" role="portfolio">
-		<div class="row justify-content-around">
-			<div class="col-sm-12"><h2 class="section-title">Portfolio</h2></div>
+	<section id="portfolio" role="portfolio" class="row justify-content-around">
+		
+			<div class="col-12"><h2 class="section-title">Portfolio</h2></div>
 
 				{% for website in options.full_websites %}
-					<div class="col col-sm-12 col-md-5">
+					<div class="col-12 col-md-5">
 						<div class="portfolio-open" data-title="{{website.website_name}}" data-image="{{TimberImage(website.snapshot).src}}" data-url="{{website.url}}" data-description="{{website.description}}">
 							<div class="portfolio-item" style="background: url('{{TimberImage(website.snapshot).src}}') no-repeat">
-								<div class="portfolio-info d-flex justify-content-center align-items-center">
+								<div class="portfolio-info d-none d-sm-flex justify-content-center align-items-center">
 									<h2 class="portfolio-site-title">{{website.website_name}}</h2>
 								</div>
 							</div>
+							<h4 class="portfolio-small-site-title text-center d-sm-none">{{website.website_name}}</h4>
 						</div>
+						
 					</div>
-					
-					
 				{% endfor %}
 			
-
-		</div>
-	</section>
+	</section> <!-- close #portfolio -->
 
 	<section id="testimonial" role="testimonials">
 		<div class="row justify-content-around">
-			{# <div class="col-sm-12"><h2 class="section-title">Testimonials</h2></div> #}
 
-			<div class="col-sm-12 col-md-7">
-				<i class="fas fa-quote-left fa-4x testimonial-quote-icon"></i>
-				<p class="testomial-text">This is a really nice quote from one of my friends who says I do good work.</p>
-			</div>
-			<div class="col-sm-12 col-md-4">
-				<div class="testimonial-source">
-					<p id="testimoial-person">Austin Bauman</p>
-					<p id="testimoial-role">Owner</p>
-					<p id="testimoial-company">Greenfleet Bicycle Shop</p>
-				</div>
+			<div class="col col-sm-12 col-md-6">
+				{% for testimonial in options.testimonials %}
+					<i class="fas fa-quote-left fa-3x testimonial-quote-icon"></i>
+					<span class="testimonial-text">{{testimonial.quote}}</span>
+					<div class="testimonial-source">
+						<p class="testimonial-person">- {{testimonial.person}}</p>
+						<p class="testimonial-role"><i>{{testimonial.position}} | {{testimonial.company}}</i></p>
+					</div>
+				{% endfor %}
+				
 			</div>
 		</div>
-	</section>
+	</section> <!-- close #testimonial -->
 	
-</div>
+</div>	<!-- close container-fluid -->
 
 <div class="modal fade" id="portfolio-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-body">
-				<div class="container-fluid">
+				<div class="container-fluid px-1 px-sm-4">
+
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -110,6 +107,25 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> <!-- close #portfolio-modal -->
+
+<div class="modal fade" id="contact-modal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="container-fluid px-1 px-sm-4 py-3">
+
+					<div class="row justify-content-center">
+						<div class="col-12">
+							<h3 class="mb-2">Contact</h3>
+							{% filter shortcodes %}[contact-form-7 id="52" title="Contact Form"]{% endfilter %}
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div> <!-- close #contact-modal -->
 
 {% endblock %}

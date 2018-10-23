@@ -1,13 +1,13 @@
 $font-size-root: 16px;
 
 $theme-colors: (
-  "primary": #00AD82,
-  "secondary": #0F6CE3,
-  "warning": #ffaa20,
-
+  "primary": /* #00AD82 */ #1BD7F1,
+  "secondary": #2D73F3,
+  "warning": #FFA500
 );
+// http://paletton.com/#uid=73l0o0kl1Wx1x+IcEXDsUWkWEVB
 
-//1DE9B6 - old primary color
+$text-color: #212529;
 
 @import url('https://fonts.googleapis.com/css?family=Arimo:400,700|Montserrat:400,700|Didact+Gothic');
 $font-family-sans-serif: 'Montserrat', "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";

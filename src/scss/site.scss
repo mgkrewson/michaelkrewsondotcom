@@ -10,6 +10,12 @@ $font-size-base: rem($font-size-root);
 
 @import 'bootstrap';
 
+@mixin breakpoint($max-size) {
+  @media (max-width: $max-size) {
+    @content;
+  }
+}
+
 header {
   .navbar-light {
     // background: linear-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
@@ -30,65 +36,108 @@ header {
 }
 
 section {
+  padding: 4rem 0;
   .section-title {
     font-family: $title-font;
     text-transform: uppercase;
     font-weight: bold;
     text-align: center;
     font-size: 2.5rem;
-    margin: 3rem auto;
+    margin: 0 auto 3rem;
   }
 
   &#banner {
+    padding: 0;
     .banner-container {
       position: relative;
       height: rem(600px);
       background: gray;
       background-size: cover !important;
       background-attachment: fixed !important;
+      justify-content: center;
+      align-items: start;
+      padding: 0 3rem;
+      @include breakpoint(768px) {
+        padding: 0 2rem;
+      }
+      @include breakpoint(576px) {
+        height: rem(500px);
+        justify-content: start;
+        // align-items: center;
+        padding: 0 1.5rem;
+      }
+      @include breakpoint(450px) {
+        height: rem(450px);
+        padding: 0 0.5rem;
+      }
       #site-title {
-        display: block;
         text-transform: uppercase;
         font-family: $title-font;
         font-size: 8rem;
         font-weight: bold;
-        line-height: .70;
+        line-height: 0.75;
         letter-spacing: -.5rem;
-        min-width: rem(650px);
-        min-height: rem(220px);
-        width: 0;
-        background-image: url(https://media.giphy.com/media/26BROrSHlmyzzHf3i/giphy.gif);
-        background-size: cover;
-        color: transparent;
-        background-clip: text;
-        overflow: visible;
+        color: theme-color('warning');
+        @include breakpoint(768px) {
+          font-size: 6.4rem;
+        }
+        @include breakpoint(576px) {
+          font-size: 5.2rem;
+          margin-top: 3rem;
+        }
+        @include breakpoint(450px) {
+          font-size: 4.2rem;
+          margin-top: 3rem;
+        }
+      }
+      #site-title-spacer {
+        height: 2rem;
       }
       #site-tagline {
         font-family: 'Didact Gothic';
         font-size: 2.5rem;
         height: 6rem;
+        padding-left: 0.5rem;
+        @include breakpoint(768px) {
+          font-size: 2rem;
+        }
+        @include breakpoint(576px) {
+          padding-left: 0.25rem;
+          font-size: 1.8rem;
+        }
+        @include breakpoint(450px) {
+          font-size: 1.5rem;
+        }
       }
       #header-button-container {
         position: absolute;
-        bottom: 5.5rem;
+        bottom: 5rem;
+        right: 3rem;
         width: 100%;
-        padding-right: 2rem;
-        a {
-          margin-right: 2rem;
+        justify-content: flex-end;
+        @include breakpoint(450px) {
+          position: static;
+          justify-content: center;
+          margin-top: 1.5rem;
+        }
+        
+        button {
           padding: 0.4rem 1.5rem;
           font-size: 1.7rem;
-          color: white;
+          color: theme-color('secondary');
           background: transparent;
           border-width: 3px;
           border-radius: rem(33px);
-          border-color: white;
-          &:hover {
-            background: theme-color('warning');
-            color: white;
-            border-color: theme-color('warning');
+          @include breakpoint(450px) {
+            font-size: 1.2rem;
           }
-          &:last-child {
-            margin-right: 0;
+          &:hover {
+            background: theme-color('secondary');
+            color: white;
+            border-color: theme-color('secondary');
+          }
+          &:focus {
+            outline: none;
           }
         }
       }
@@ -96,7 +145,6 @@ section {
   }
 
   &#bio {
-    padding: 6.5rem 0;
     .bio-image {
       $side-dimension: rem(200px);
       width: $side-dimension;
@@ -107,26 +155,36 @@ section {
     .caption {
       color: gray("700");
       font-size: 1.4rem;
+      @include breakpoint(768px) {
+        margin-bottom: 2rem;
+      }
     }
 
     #bio-text {
       border-left: 1px solid gray("500");
       font-size: 1.2rem;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      @include breakpoint(768px) {
+        border-left: none;
+        border-top: 1px solid gray("500");
+        padding-top: 2rem;
+      }
       .first-sentence {
         font-weight: bold;
         font-size: 1.3rem;
       }
-      a {
+      button {
         padding: 0.3rem 1rem;
         font-size: 1.2rem;
-        color: theme-color('warning');
+        color: theme-color('secondary');
         background: transparent;
         border-width: 3px;
         border-radius: rem(33px);
         &:hover {
-          background: theme-color('warning');
+          background: theme-color('secondary');
           color: white;
-          border-color: theme-color('warning');
+          border-color: theme-color('secondary');
         }
       }
     }
@@ -136,7 +194,6 @@ section {
     background: gray("200");
     margin-left: -$grid-gutter-width / 2;
     margin-right: -$grid-gutter-width / 2;
-    padding: 0 4rem 4rem;
     .portfolio-open {
       cursor: pointer;
       margin: 1rem 0 2rem;
@@ -169,52 +226,44 @@ section {
           }
         }
       }
+      .portfolio-small-site-title {
+        margin-top: 0.8rem;
+        margin-bottom: 2rem;
+      }
     }
+    
   }
 
   &#testimonial {
-    margin: 4rem 0;
     .testimonial-quote-icon {
-      display: inline;
+      margin-right: 0.5rem;
+      color: rgba(darken(theme-color('secondary'), 15%), 0.6);
     }
     .testimonial-text {
-      display: inline;
+      font-size: 1.2rem;
     }
     .testimonial-source {
-      .testimonial-person {
-
+      text-align: end;
+      p {
+        margin: 0;
       }
-      .testimonial-role {
-
+      .testimonial-person {
+        font-size: 1.5rem;
+        color: theme-color('warning');
       }
       .testimonial-company {
-
+        font-size: 1.2rem;
       }
-    }
-  }
-}
-
-
-footer {
-  background: rgb(60, 192, 224);
-  #footer-top-row {
-    padding: 1rem 0;
-    color: white;
-    font-size: 1.2rem;
-  }
-  #footer-email {
-    a {
-      color: white;
     }
   }
 }
 
 .modal {
   .modal-site-url {
-    color: theme-color("primary");
+    color: theme-color("warning");
     transition: color 100ms;
     &:hover {
-      color: darken(theme-color("primary"), 5%);
+      color: darken(theme-color("warning"), 5%);
       text-decoration: none;
     }
     .modal-site-image {
@@ -231,5 +280,34 @@ footer {
   .modal-site-description {
     margin-top: 1rem;
     font-size: 1.2rem;
+  }
+  .form-control:focus {
+    border-color: theme-color("warning");
+    box-shadow: 0 0 0 0.2rem rgba(theme-color("warning"),0.25);
+  }
+  .wpcf7-validation-errors, .wpcf7-acceptance-missing {
+    border: 2px solid theme-color("warning");
+  }
+}
+
+footer {
+  background: #96E9F5;
+  font-size: 1rem;
+  @include breakpoint(515px) {
+    font-size: 0.7rem;
+
+  }
+  .container-fluid {
+    @include breakpoint(515px) {
+      padding: 0 1rem;
+    }
+  }
+  #footer-top-row {
+    padding: 1rem 0;
+  }
+  #footer-email {
+    a {
+      color: $text-color;
+    }
   }
 }
